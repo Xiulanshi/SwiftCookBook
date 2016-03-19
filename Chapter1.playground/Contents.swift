@@ -127,6 +127,45 @@ do{
     print(excep)
 }
 
+//1.4 Checking for API Availability
+// You want to check whether a specific API is available on the host device running your code.
+// USe the #available syntax.
+
+enum Errors3 : ErrorType{
+    case EmptyData
+}
+
+func bytesFromData(data: NSData) throws -> [UInt8]{
+    
+    if (data.length == 0){
+        throw Errors3.EmptyData
+    }
+    
+    var buffer = [UInt8](count: data.length, repeatedValue: 0)
+    
+    if #available(iOS 8.1, *){
+        data.getBytes(&buffer, length: data.length)
+    } else {
+        data.getBytes(&buffer)
+    }
+    
+    return buffer
+}
+
+func example1(){
+    
+    guard let data = "Foo".dataUsingEncoding(NSUTF8StringEncoding) else {
+        return
+    }
+    
+    do{
+        let bytes = try bytesFromData(data)
+        print("Data = \(bytes)")
+    } catch {
+        print("Failed to get bytes")
+    }
+}
+
 
 
 
