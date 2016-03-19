@@ -53,3 +53,91 @@ catch {
 // You want to make sure a set of conditions are met before continuing with the flow of your method.
 // Use the guard syntax.
 
+//1. Specify a set of conditions for your methods.
+//2. Bind variables to optionals and use those variables in the rest of your method's body.
+
+func stringFromData(data: NSData?) -> String? {
+    
+    guard let data = data,
+    let str = NSString(data: data, encoding: NSUTF8StringEncoding)
+        where data.length > 0 else {
+            return nil
+    }
+    
+    return String(str)
+    
+}
+
+if let _ = stringFromData(nil){
+    print("Got the string")
+} else {
+    print("No string came back")
+}
+
+//guard let data = NSString(string: "Foo")
+//    .dataUsingEncoding(NSUTF8StringEncoding) where data.length > 0 else{
+//        return
+//}
+//
+//if let str = stringFromData(data){
+//    print("Got the string \(str)")
+//} else {
+//    print("No string came back")
+//}
+
+func exmaple3(firstName firstName: String?, lastName: String?, age:UInt8?){
+    
+    guard let firstName = firstName, let lastName = lastName, _ = age where
+        firstName.characters.count > 0 && lastName.characters.count > 0 else {
+            return
+    }
+    
+    print(firstName, " ", lastName)
+}
+
+//1.3 Ensuring the Execution of Code Blocks Before Exiting Methods
+// You want to ensure that some code always gets executed, for instance to do some cleanup.
+// Use the defer syntax.
+
+enum Errors2: ErrorType{
+    case EmptyString
+}
+
+func imageForString(str: String, size: CGSize) throws -> UIImage{
+    
+    defer{
+        UIGraphicsEndImageContext()
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(size, true, 0)
+    
+    if str.characters.count == 0{
+        throw Errors2.EmptyString
+    }
+    
+    //draw the string here ...
+    
+    return UIGraphicsGetImageFromCurrentImageContext()
+}
+
+do{
+    let i = try imageForString("Foo", size: CGSize(width: 100, height: 50))
+    print(i)
+} catch let excep{
+    print(excep)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
