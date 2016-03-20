@@ -77,7 +77,46 @@ class ViewController: UIViewController {
     @IBAction func useLevel3(sender: AnyObject) {
         useLevel(3)
     }
-    
-   
 }
+
+//1.6 Exporting Device-specific binaries
+// You want to extract your app's binary for a specific device architecture to find out how big your binary will be on that device when the user downloads your app.
+// 1. Archive your app in Xcode.
+// 2. In the Archives screen, click the Export button.
+// 3. Choose the " Save for Ad Hoc Deployment" option in the new screen and click Next.
+// 4. In the new window, choose "Export for specific device" and then choose your device from the list.
+// 5. Once you are done, click the Next button and save your file to disk.
+
+//1.7 Linking Seperate Storyboards Together
+// You have a messy storyboard, so you would like to place some view controllers in their own storyboard and still be able to cross-reference them in your other storyboards.
+// US IB's new "Refactor to Storyboard" feature under the Editor menu.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
