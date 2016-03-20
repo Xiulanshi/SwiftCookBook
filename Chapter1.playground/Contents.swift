@@ -166,6 +166,12 @@ func example1(){
     }
 }
 
+//1.5 Categorizing and downloading assets to get smaller Binaries
+//You want to dynamically download assets and use them whenver needed
+//Use Xcode to tag your assets and then use NSBundleResourceRequest class to download them.
+
+
+
 
 
 
